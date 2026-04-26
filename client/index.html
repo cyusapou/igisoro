@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Igisoro — Traditional Rwandan Board Game</title>
+    <meta name="description" content="Play the authentic Rwandan mancala game Igisoro online. Realistic wooden board with hand-carved pits and natural stone seeds.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./src/style.css">
+</head>
+<body>
+    <!-- Ambient particles -->
+    <div id="dust-particles"></div>
+
+    <div id="app">
+        <!-- Entry Overlay -->
+        <div id="entry-overlay" class="overlay">
+            <div class="modal entry-modal">
+                <div class="modal-ornament top"></div>
+                <h1 id="game-title">IGISORO</h1>
+                <p class="subtitle">— Umukino w'Igisoro —</p>
+                <p class="tagline">Traditional Rwandan Strategy Game</p>
+
+                <div class="entry-actions">
+                    <button id="btn-bot" class="btn btn-primary">
+                        <span class="btn-icon">♟</span>
+                        Play vs Bot
+                    </button>
+
+                    <div class="divider"><span>or play online</span></div>
+
+                    <button id="btn-create" class="btn btn-wood">
+                        <span class="btn-icon">+</span>
+                        Create Room
+                    </button>
+
+                    <div class="join-row">
+                        <input type="text" id="room-input" placeholder="ROOM CODE" maxlength="6" spellcheck="false">
+                        <button id="btn-join" class="btn btn-wood btn-sm">Join</button>
+                    </div>
+                </div>
+                <div class="modal-ornament bottom"></div>
+            </div>
+        </div>
+
+        <!-- Waiting Room Overlay -->
+        <div id="waiting-overlay" class="overlay hidden">
+            <div class="modal">
+                <h2>Room Created</h2>
+                <p>Share this code with your opponent:</p>
+                <div id="display-room-code" class="room-code-badge">XXXXXX</div>
+                <div class="waiting-dots">
+                    <span></span><span></span><span></span>
+                </div>
+                <p class="waiting-text">Waiting for opponent…</p>
+                <button id="btn-cancel" class="btn btn-danger">Cancel</button>
+            </div>
+        </div>
+
+        <!-- Game Interface -->
+        <div id="game-container" class="game-container">
+            <!-- Top info bar -->
+            <div class="info-bar">
+                <div id="player-1-info" class="player-badge opponent-badge">
+                    <div class="badge-avatar">2</div>
+                    <div class="badge-details">
+                        <span class="player-name">Opponent</span>
+                        <span class="turn-indicator hidden">Playing…</span>
+                    </div>
+                </div>
+                <div class="game-status-area">
+                    <div class="status-message" id="status-msg">Game Started</div>
+                    <div id="game-room-code" class="room-code-sm">ROOM: XXXXXX</div>
+                </div>
+                <div id="player-0-info" class="player-badge my-badge">
+                    <div class="badge-details" style="text-align: right;">
+                        <span class="player-name">You</span>
+                        <span class="turn-indicator hidden">Your Turn!</span>
+                    </div>
+                    <div class="badge-avatar">1</div>
+                </div>
+            </div>
+
+            <!-- The Board -->
+            <div class="board-wrapper">
+                <div class="board-edge">
+                    <!-- Carved ornament strips -->
+                    <div class="carving-strip left"></div>
+                    <div class="carving-strip right"></div>
+
+                    <div id="board" class="board">
+                        <!-- Row labels -->
+                        <div class="board-fold-line"></div>
+                        <!-- Rows injected by JS -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Controls -->
+            <div id="controls" class="controls-area">
+                <div id="capture-decision" class="decision-panel hidden">
+                    <p class="decision-title">⚡ Capture Available!</p>
+                    <p class="decision-sub">You can take your opponent's seeds. What will you do?</p>
+                    <div class="decision-buttons">
+                        <button id="btn-capture" class="btn btn-primary">Capture</button>
+                        <button id="btn-pass-move" class="btn btn-danger">Pass (Ndahise)</button>
+                    </div>
+                </div>
+
+                <div id="retreat-notice" class="decision-panel retreat-panel hidden">
+                    <p class="decision-title">🔄 Opponent Passed!</p>
+                    <p class="decision-sub">Click any front-row pit with seeds to retreat them to the back row.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Game Over Modal -->
+        <div id="gameover-overlay" class="overlay hidden">
+            <div class="modal gameover-modal">
+                <div class="gameover-icon" id="gameover-icon">👑</div>
+                <h1 id="winner-text">Victory!</h1>
+                <p id="win-reason">Opponent has no legal moves.</p>
+                <button onclick="window.location.reload()" class="btn btn-primary">Play Again</button>
+            </div>
+        </div>
+    </div>
+    <script type="module" src="./src/main.js"></script>
+</body>
+</html>

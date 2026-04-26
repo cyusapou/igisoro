@@ -1,0 +1,12 @@
+{
+  "name": "igisoro-multiplayer",
+  "version": "1.0.0",
+  "scripts": {
+    "server": "cd server && node index.js",
+    "client": "cd client && npm run dev",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
